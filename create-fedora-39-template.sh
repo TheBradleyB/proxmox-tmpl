@@ -7,6 +7,8 @@ tmp_cores="2"
 tmp_memory="2048"
 rootPasswd="D9dUFf7pxNnuLGa5smI8"
 cpuTypeRequired="host"
+userName="sso-user"
+userPassword="L1ght5p33d"
 
 apt update
 apt install libguestfs-tools -y
@@ -20,10 +22,13 @@ qm importdisk $virtualMachineId $imageName $volumeName
 qm set $virtualMachineId --scsihw virtio-scsi-pci --scsi0 $volumeName:vm-$virtualMachineId-disk-0
 qm set $virtualMachineId --boot c --bootdisk scsi0
 qm set $virtualMachineId --ide2 $volumeName:cloudinit
+qm resize $virtualMachineId scsi0 +15G
 qm set $virtualMachineId --serial0 socket --vga serial0
 qm set $virtualMachineId --ipconfig0 ip=dhcp
 qm set $virtualMachineId --cpu cputype=$cpuTypeRequired
 qm set $virtualMachineId --agent 1
+qm set $virtualMachineId --ciuser $userName
+qm set $virtualMachineId --cipassword $userPassword
 qm template $virtualMachineId
 
 # Reseting VM's machine-id
@@ -37,3 +42,6 @@ qm template $virtualMachineId
 # If the machine-id is not regenerated you can try to fix it by running the following command.
 
 # sudo systemd-machine-id-setup
+
+# git config --global user.name "bradleyb"
+# git config --global user.email "butlerb73@gmail.com"
