@@ -7,6 +7,8 @@ tmp_cores="2"
 tmp_memory="2048"
 rootPasswd="D9dUFf7pxNnuLGa5smI8"
 cpuTypeRequired="host"
+userName="sso-user"
+userPassword="L1ght5p33d"
 
 apt update
 apt install libguestfs-tools -y
@@ -24,4 +26,6 @@ qm set $virtualMachineId --serial0 socket --vga serial0
 qm set $virtualMachineId --ipconfig0 ip=dhcp
 qm set $virtualMachineId --cpu cputype=$cpuTypeRequired
 qm set $virtualMachineId --agent 1
+qm set $virtualMachineId --ciuser $userName
+qm set $virtualMachineId --cipassword $userPassword
 qm template $virtualMachineId
