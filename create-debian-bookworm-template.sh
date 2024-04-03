@@ -1,7 +1,7 @@
 imageURL=https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-amd64.qcow2
 imageName="debian-12-genericcloud-amd64.qcow2"
 volumeName="local-ssd"
-virtualMachineId="9003"
+virtualMachineId="9002"
 templateName="debain-12-cloud-tmpl"
 tmp_cores="2"
 tmp_memory="2048"
