@@ -14,7 +14,7 @@ sshkeys_pub="/root/.ssh/id_ed25519-butlerlab-ssh.pub"
 
 apt update
 apt install libguestfs-tools -y
-rm *.img
+rm *.qcow2
 wget -O $imageName $imageURL
 qm destroy $virtualMachineId
 virt-customize -a $imageName --install qemu-guest-agent
