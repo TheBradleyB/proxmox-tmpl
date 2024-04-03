@@ -24,6 +24,7 @@ qm importdisk $virtualMachineId $imageName $volumeName
 qm set $virtualMachineId --scsihw virtio-scsi-pci --scsi0 $volumeName:vm-$virtualMachineId-disk-0
 qm set $virtualMachineId --boot c --bootdisk scsi0
 qm set $virtualMachineId --ide2 $volumeName:cloudinit
+qm resize $virtualMachineId scsi0 +18G
 qm set $virtualMachineId --serial0 socket --vga serial0
 qm set $virtualMachineId --ipconfig0 ip=dhcp
 qm set $virtualMachineId --cpu cputype=$cpuTypeRequired
