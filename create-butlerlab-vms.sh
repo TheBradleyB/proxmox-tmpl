@@ -17,7 +17,7 @@ vm_number=4
 # The first VM id, smallest id is 100
 id=701
 # Name prefix of the first VM
-name=lab-srv-
+name=lab-srv
 
 drive_name=local-ssd
 agent=1
