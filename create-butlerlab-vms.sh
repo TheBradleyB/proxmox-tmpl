@@ -13,11 +13,11 @@ template_path="/var/lib/vz/template"
 # Proxmox certificate path
 cert_path="/root/.ssh"
 # Number of VMs to be created
-vm_number=3
+vm_number=4
 # The first VM id, smallest id is 100
 id=701
 # Name prefix of the first VM
-name=lab
+name=lab-srv-
 
 drive_name=local-ssd
 agent=1
@@ -26,7 +26,7 @@ memory=2048
 core=2
 
 # IP for the first VM
-ip=192.168.99.10
+ip=192.168.99.11
 gateway=192.168.99.1
 
 # ssh certificate name variable
