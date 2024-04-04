@@ -52,7 +52,7 @@ function run() {
     print_info # Prints information about what will be created based on defaults/user inputs
     setup      # Do not worry it asks for confirmation before the setup/installation starts
     start_vms  # You can choose to start all VMs if you want
-    #destroy_existing_vms
+  
 }
 
 function print_info() {
@@ -172,23 +172,8 @@ function get_os_image() {
 
 }
 
-# Only runs if you uncomment the function in `create_vms`. Please be careful
-function destroy_existing_vms() {
-    # Stop and destroy Virtual Machine if it already exists
-    # TODO: Put loop and confirmation before doing anything
-    qm stop $(($id + $i - 1))
-    qm destroy $(($id + $i - 1)) --destroy-unreferenced-disks --purge
-}
-
 function create_vms() {
     for ((i = 1; i <= $vm_number; i++)); do
-        # Stop and destroy Virtual Machine if it already exists.
-        # Be really careful with this only uncomment if you know what are you doing. !!!
-        #
-        #  destroy_existing_vms
-        #
-        # #############################
-        # Create VM from the cloud image
         if [[ $i -le 9 ]]; then
             idx="0$i"
         else
