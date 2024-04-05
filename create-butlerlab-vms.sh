@@ -33,8 +33,8 @@ gateway=192.168.99.1
 cert_name=id_ed25519-butlerlab-ssh
 
 # User settings
-user=$USER
-password=password
+user=sso-user
+password=G*nc*nn1o0
 
 ubuntu_url=https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
 ubuntu_filename=noble-server-cloudimg-amd64.img

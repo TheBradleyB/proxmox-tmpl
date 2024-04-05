@@ -17,6 +17,7 @@ wget -O $imageName $imageURL
 qm destroy $virtualMachineId
 virt-customize -a $imageName --install qemu-guest-agent
 virt-customize -a $imageName --root-password password:$rootPasswd
+virt-customize -a $imageName --truncate /etc/machine-id
 qm create $virtualMachineId --name $templateName --memory $tmp_memory --cores $tmp_cores --net0 virtio,bridge=vmbr10
 qm importdisk $virtualMachineId $imageName $volumeName
 qm set $virtualMachineId --scsihw virtio-scsi-pci --scsi0 $volumeName:vm-$virtualMachineId-disk-0
