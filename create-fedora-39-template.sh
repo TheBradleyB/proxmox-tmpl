@@ -2,13 +2,13 @@ imageURL=https://download.fedoraproject.org/pub/fedora/linux/releases/39/Cloud/x
 imageName="Fedora-Cloud-Base-39-1.5.x86_64.qcow2"
 volumeName="local-ssd"
 virtualMachineId="9000"
-templateName="fedora-base-39-cloud-tmpl"
+templateName="cloud-fedora-39-tmpl"
 tmp_cores="2"
 tmp_memory="2048"
 rootPasswd="D9dUFf7pxNnuLGa5smI8"
 cpuTypeRequired="host"
 userName="sso-user"
-userPassword="L1ght5p33d"
+sshkeys_pub="/root/.ssh/id_ed25519-butlerlab-ssh.pub"
 
 apt update
 apt install libguestfs-tools -y
@@ -29,7 +29,7 @@ qm set $virtualMachineId --ipconfig0 ip=dhcp
 qm set $virtualMachineId --cpu cputype=$cpuTypeRequired
 qm set $virtualMachineId --agent 1
 qm set $virtualMachineId --ciuser $userName
-qm set $virtualMachineId --cipassword $userPassword
+qm set $virtualMachineId --sshkeys $sshkeys_pub
 qm template $virtualMachineId
 
 # Reseting VM's machine-id

@@ -2,13 +2,13 @@ imageURL=https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd
 imageName="jammy-server-cloudimg-amd64.img"
 volumeName="local-ssd"
 virtualMachineId="9001"
-templateName="jammy-server-cloud-tmpl"
+templateName="cloud-ubuntu-jammy-tmpl"
 tmp_cores="2"
 tmp_memory="2048"
 rootPasswd="D9dUFf7pxNnuLGa5smI8"
 cpuTypeRequired="host"
 userName="sso-user"
-userPassword="L1ght5p33d"
+sshkeys_pub="/root/.ssh/id_ed25519-butlerlab-ssh.pub"
 
 apt update
 apt install libguestfs-tools -y
@@ -23,10 +23,11 @@ qm importdisk $virtualMachineId $imageName $volumeName
 qm set $virtualMachineId --scsihw virtio-scsi-pci --scsi0 $volumeName:vm-$virtualMachineId-disk-0
 qm set $virtualMachineId --boot c --bootdisk scsi0
 qm set $virtualMachineId --ide2 $volumeName:cloudinit
+qm resize $virtualMachineId scsi0 +18G
 qm set $virtualMachineId --serial0 socket --vga serial0
 qm set $virtualMachineId --ipconfig0 ip=dhcp
 qm set $virtualMachineId --cpu cputype=$cpuTypeRequired
 qm set $virtualMachineId --agent 1
 qm set $virtualMachineId --ciuser $userName
-qm set $virtualMachineId --cipassword $userPassword
+qm set $virtualMachineId --sshkeys $sshkeys_pub
 qm template $virtualMachineId
